@@ -1,5 +1,18 @@
+const express = require('express');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Servidor HTTP para Railway não derrubar o app
+app.get('/', (req, res) => {
+  res.send('Bot está rodando.');
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
 
 const client = new Client({
   authStrategy: new LocalAuth(),
